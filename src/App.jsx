@@ -1,35 +1,28 @@
 // src/App.jsx
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import './App.css'; // Membaca file styling hitam-kuning kita
+import './App.css'; 
 
 export default function App() {
-  // State manajemen data
   const [pokemonList, setPokemonList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
-  // State pencarian & filter dropdown
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedType, setSelectedType] = useState('all');
 
-  // State pagination (Fitur tambahan nilai A)
   const [currentPage, setCurrentPage] = useState(1);
   const [pokemonPerPage] = useState(12);
 
-  // Opsi kategori filter
   const pokemonTypes = ['all', 'fire', 'water', 'grass', 'electric', 'bug', 'normal', 'poison', 'flying'];
 
-  // Ambil data API saat pertama kali dimuat
   useEffect(() => {
     const fetchPokemonData = async () => {
       setLoading(true);
       setError(null);
       try {
-        // Endpoint 1: Ambil daftar nama dasar
         const resList = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=100');
         
-        // Endpoint 2: Ambil detail gambar & statistik secara paralel
         const detailPromises = resList.data.results.map(async (pokemon) => {
           const resDetail = await axios.get(pokemon.url);
           return {
@@ -55,14 +48,12 @@ export default function App() {
     fetchPokemonData();
   }, []);
 
-  // Filter logika gabungan Search dan Dropdown
   const filteredPokemon = pokemonList.filter((pokemon) => {
     const matchesSearch = pokemon.name.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesType = selectedType === 'all' || pokemon.types.includes(selectedType);
     return matchesSearch && matchesType;
   });
 
-  // Potong array data untuk kebutuhan Pagination halaman
   const indexOfLastPokemon = currentPage * pokemonPerPage;
   const indexOfFirstPokemon = indexOfLastPokemon - pokemonPerPage;
   const currentPokemonChunk = filteredPokemon.slice(indexOfFirstPokemon, indexOfLastPokemon);
@@ -111,7 +102,7 @@ export default function App() {
       {/* DASHBOARD GRID DISPLAY */}
       <main className="dashboard-main">
         
-        {/* JIKA SEDANG LOADING (Tampilkan Kerangka Shimmer) */}
+        {/* LOADING STATE */}
         {loading && (
           <div className="pokemon-grid">
             {[...Array(8)].map((_, i) => (
@@ -120,7 +111,7 @@ export default function App() {
           </div>
         )}
 
-        {/* JIKA TERJADI ERROR */}
+        {/* ERROR STATE */}
         {error && (
           <div className="error-card">
             <p style={{ color: '#f87171', marginBottom: '1.5rem' }}>⚠️ {error}</p>
@@ -130,7 +121,7 @@ export default function App() {
           </div>
         )}
 
-        {/* JIKA SELESAI DAN BERHASIL */}
+        {/* DATA UTAMA */}
         {!loading && !error && (
           <>
             {currentPokemonChunk.length === 0 ? (
@@ -161,7 +152,6 @@ export default function App() {
                         })}
                       </div>
 
-                      {/* Batas Bar Status */}
                       <div className="stats-section">
                         <div className="stat-row">
                           <span>HP 💛</span>

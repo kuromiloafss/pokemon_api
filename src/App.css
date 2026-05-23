@@ -1,6 +1,4 @@
 /* src/App.css */
-
-/* --- GLOBAL VARIABEL (TEMA HITAM KUNING NEXT.JS) --- */
 :root {
   --bg-main: #0a0a0a;
   --bg-card: #141414;
@@ -8,7 +6,7 @@
   --border-color: #262626;
   --text-main: #ffffff;
   --text-muted: #a3a3a3;
-  --accent-yellow: #facc15;      /* Kuning Cerah */
+  --accent-yellow: #facc15;
   --accent-yellow-dim: rgba(250, 252, 21, 0.1);
 }
 
@@ -20,7 +18,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* --- BANNER HEADER --- */
 .pokemon-header {
   background-color: var(--bg-main);
   padding: 4rem 1rem 3rem 1rem;
@@ -46,7 +43,6 @@ body {
   font-size: 1rem;
 }
 
-/* --- SEARCH & FILTER BAR --- */
 .control-container {
   max-width: 1200px;
   margin: 2.5rem auto 0 auto;
@@ -126,7 +122,6 @@ body {
   margin: 0.75rem 0 0 0;
 }
 
-/* --- LAYOUT GRID UTAMA --- */
 .dashboard-main {
   max-width: 1200px;
   margin: 1.5rem auto 4rem auto;
@@ -143,7 +138,6 @@ body {
 @media (min-width: 768px) { .pokemon-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (min-width: 1024px) { .pokemon-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 
-/* --- KARTU POKEMON (CARD STYLE) --- */
 .pokemon-card {
   background-color: var(--bg-card);
   border-radius: 12px;
@@ -203,7 +197,6 @@ body {
   text-transform: capitalize;
 }
 
-/* Lencana / Badge Elemen */
 .badge-container {
   display: flex;
   gap: 0.4rem;
@@ -227,7 +220,6 @@ body {
   background-color: var(--accent-yellow-dim);
 }
 
-/* Bar Status (HP & Attack) - FIX TANPA TYPO h-full */
 .stats-section {
   margin-top: 1.25rem;
   border-top: 1px solid var(--border-color);
@@ -259,7 +251,6 @@ body {
 .stat-bar-fill-hp { background-color: var(--accent-yellow); height: 100%; }
 .stat-bar-fill-atk { background-color: #ffffff; height: 100%; }
 
-/* --- TOMBOL PAGINATION --- */
 .pagination-container {
   display: flex;
   justify-content: center;
@@ -309,7 +300,6 @@ body {
   border-color: var(--text-main);
 }
 
-/* --- ANIMASI SKELETON LOADER --- */
 .loading-skeleton {
   background: linear-gradient(90deg, #141414 25%, #222222 50%, #141414 75%);
   background-size: 200% 100%;
